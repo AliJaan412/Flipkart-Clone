@@ -37,5 +37,18 @@ export const userSignUp = async (request, response) => {
     }
 }
 
+export const getProfile = async (request, response) => {
+    try {
+        const user = await User.findById(request.user.id).select('-password');
+        if (!user) {
+            return response.status(404).json({ message: 'User not found' });
+        }
+        response.status(200).json(user);
+
+    } catch (error) {
+        response.status(500).json({ message: error.message });
+    }
+}
+
 
 

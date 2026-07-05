@@ -1,4 +1,5 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
+import { getProfile } from '../service/api';
 
 export const LoginContext = createContext(null);
 
@@ -20,6 +21,14 @@ const ContextProvider = ({children}) => {
         setAccount('');
         setToken('');
     };
+
+    useEffect(() => {
+        if (!token) return;
+        getProfile().then((response) => {
+            if (!response) logout();
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <LoginContext.Provider value={{ account, token, login, logout }}>

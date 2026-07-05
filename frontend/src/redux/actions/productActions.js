@@ -1,10 +1,9 @@
 import * as actionTypes from '../constants/productConstant';
-import { API_BASE_URL } from '../../constants/api';
-import axios from 'axios';
+import { client } from '../../service/api';
 
 export const getProducts = () => async (dispatch) => {
     try {
-        const { data } = await axios.get(`${API_BASE_URL}/products`);
+        const { data } = await client.get('/products');
         dispatch({ type: actionTypes.GET_PRODUCTS_SUCCESS, payload: data });
 
     } catch (error) {
@@ -15,7 +14,7 @@ export const getProducts = () => async (dispatch) => {
 export const getProductDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: actionTypes.GET_PRODUCT_DETAILS_REQUEST });
-        const { data } = await axios.get(`${API_BASE_URL}/product/${id}`);
+        const { data } = await client.get(`/product/${id}`);
         
         dispatch({ type: actionTypes.GET_PRODUCT_DETAILS_SUCCESS, payload: data });
 
