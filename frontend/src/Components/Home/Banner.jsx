@@ -1,5 +1,5 @@
 import { styled } from '@mui/material';
-import { bannerData } from '../../constant/data';
+import { bannerData } from '../../constants/data';
 import Carousel from 'react-multi-carousel';
 
 const responsive = {

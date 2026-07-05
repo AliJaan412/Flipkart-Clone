@@ -1,5 +1,5 @@
 import { Typography, Box, styled } from '@mui/material'; 
-import { navData } from '../../constant/data';
+import { navData } from '../../constants/data';
 const Component = styled(Box)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'space-between',
