@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { API_BASE_URL } from '../constants/api';
 
-const url = 'http://localhost:8000';
+const url = API_BASE_URL;
 
 export const authenticateLogin = async (user) => {
     try {
