@@ -11,9 +11,9 @@ const Logout = styled(Typography)`
     margin-left: 20px;
 `;
 
-const Profile = ({ account, setAccount }) => {
+const Profile = ({ account, logout }) => {
     const [open, setOpen] = useState(false);
-    
+
     const handleClick = (event) => {
         setOpen(event.currentTarget);
     };
@@ -22,10 +22,6 @@ const Profile = ({ account, setAccount }) => {
         setOpen(false);
     };
 
-    const logout = () => {
-        setAccount('');
-    }
-    
     return (
         <>
             <Box onClick={handleClick}><Typography style={{ marginTop: 2 }}>{account}</Typography></Box>

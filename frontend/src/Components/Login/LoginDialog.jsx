@@ -113,7 +113,7 @@ const accountInitialValues = {
   },
 };
 
-const LoginDialog = ({ open, setOpen, setAccount }) => {
+const LoginDialog = ({ open, setOpen, onLoginSuccess }) => {
   const [login, setLogin] = useState(loginInitialValues);
   const [signup, setSignup] = useState(signupInitialValues);
   const [error, showError] = useState(false);
@@ -137,7 +137,7 @@ const LoginDialog = ({ open, setOpen, setAccount }) => {
     else {
       showError(false);
       handleClose();
-      setAccount(login.username);
+      onLoginSuccess(response.data.username, response.data.token);
     }
   };
 
@@ -145,7 +145,7 @@ const LoginDialog = ({ open, setOpen, setAccount }) => {
     let response = await authenticateSignup(signup);
     if (!response) return;
     handleClose();
-    setAccount(signup.username);
+    onLoginSuccess(response.data.username, response.data.token);
   };
 
   const toggleSignup = () => {

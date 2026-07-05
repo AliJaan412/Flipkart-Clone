@@ -55,7 +55,7 @@ const LoginButton = styled(Button)(({ theme }) => ({
 const CustomButtons = () => {
     
     const [open, setOpen] = useState(false);
-    const { account, setAccount } = useContext(LoginContext);
+    const { account, login, logout } = useContext(LoginContext);
 
     const cartDetails = useSelector(state => state.cart);
     const { cartItems } = cartDetails;
@@ -67,9 +67,9 @@ const CustomButtons = () => {
     return (
         <Wrapper>
             {
-                account ? <Profile account={account} setAccount={setAccount} /> :
+                account ? <Profile account={account} logout={logout} /> :
                     <LoginButton variant="contained" onClick={() => openDialog()}>Login</LoginButton>
-                
+
             }
             <Typography style={{ marginTop: 3, width: 135 }}>Become a Seller</Typography>
             <Typography style={{ marginTop: 3 }}>More</Typography>
@@ -80,7 +80,7 @@ const CustomButtons = () => {
                 </Badge>
                 <Typography style={{ marginLeft: 10 }}>Cart</Typography>
             </Container>
-            <LoginDialog open={open} setOpen={setOpen} setAccount={setAccount} />
+            <LoginDialog open={open} setOpen={setOpen} onLoginSuccess={login} />
         </Wrapper>
     )
 }
